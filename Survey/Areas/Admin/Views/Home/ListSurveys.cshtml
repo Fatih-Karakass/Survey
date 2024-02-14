@@ -1,0 +1,53 @@
+﻿@using Survey.Models.Entitites;
+@model List<Surveys>
+
+    <a asp-action="AddSurveys" asp-controller="Home">Yeni Ekle  </a>
+    <table class="table" id="dataTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Anket Adı</th>
+                <th scope="col">Bşalngıç Tarihi</th>
+                <th scope="col">Bitiş Tarihi</th>
+                <th scope="col">Sorular</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.StartedTime.ToString("MM/dd/yyyy")</td>
+                <td>@item.FinishedTime.ToString("MM/dd/yyyy")</td>
+                <td>
+
+                    @foreach(var question in item.questions)
+                    {
+                        <label>
+                            @question.QuesitonTitle</label>
+                    }
+
+                </td>
+                <td><a asp-action="DeletedSurveys" asp-route-id="@item.Id" class=""><i class="fa fa-solid fa-trash-can "></i></a></td>
+                <td><a asp-action="UpdateSurveys" asp-route-id="@item.Id" class=""><i class="fa fa-solid fa-pen "></i></a></td>
+            </tr>
+        }
+
+    </tbody>
+    </table>
+
+ 
+
+@section Scripts{
+	<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" ></script>
+	<script>
+		$(document).ready(function () {
+			$('#dataTable').DataTable();
+		});
+
+	</script>
+           }
+ 

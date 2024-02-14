@@ -1,0 +1,26 @@
+﻿@using Survey.Dto_s;
+@using Survey.Models.Entitites;
+@model UpdateQuestionDto
+<form method="post">
+	<label>Soru Başlığı</label>
+	<input type="text" asp-for="QuesitonTitle" />
+	<br />
+	<label>Soru Açıklaması</label>
+	<input type="text" asp-for="QuesitonDesciription" />
+	<br />
+	<label>Soru Puanı</label>
+	<input type="text" asp-for="point" />
+	<br />
+	<label>Doğru Cevap</label>
+	<input type="text" asp-for="correct_Answer" />
+	<br />
+	<select asp-for="questionType" asp-items="Html.GetEnumSelectList<QuestionType>()">
+		<option selected="selected" value="">Soru Tipini Seçiniz</option>
+	</select>
+	<br />
+	<select name="survey" asp-items="@(new SelectList(Model.Surveys,"Value","Text"))">
+		<option selected="selected" value="">Anket Seçiniz</option>
+	</select>
+	<br />
+	<button type="submit">Kaydet</button>
+</form>

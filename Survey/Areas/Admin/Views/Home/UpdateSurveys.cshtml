@@ -1,0 +1,17 @@
+﻿
+@model UpdateSurveysDto
+<form method="post">
+	<label>Anket Adı</label>
+	<input type="text" asp-for="Name" />
+	<label>Bitiş Tarihi</label>
+	<input type="datetime" asp-for="FinishedTime" />
+	<label>Sorular</label>
+	@for(int i =0;i<Model.questionsAll.Count;i++)
+	{
+
+		var isChecked = Model.IsSelected[i] ? "checked" : "";
+	<input type="checkbox" asp-for="@Model.IsSelected[i]" isChecked />
+	<label>@Model.questionsAll[i].QuesitonTitle</label>
+	}
+	<button type="submit">Kaydet</button>
+</form>

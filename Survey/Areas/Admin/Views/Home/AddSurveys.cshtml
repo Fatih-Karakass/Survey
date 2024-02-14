@@ -1,0 +1,11 @@
+﻿@using Survey.Dto_s;
+@model SurveysDto
+<form method="post">
+	<label>Anket Adı</label>
+	<input type="text" asp-for="Name" />
+	<label>Başlangıç Tarihi</label>
+	<input type="date" asp-for="StartedTime" />
+	<label>Bitiş Tarihi</label>
+	<input type="date" asp-for="FinishedTime" />
+	<button type="submit">Kaydet</button>
+</form>

@@ -1,0 +1,79 @@
+﻿@using Survey.Dto_s;
+@using Survey.Models.Entitites;
+@model QuestionsDto
+<form method="post">
+	
+	<h1>Soru Ekle</h1>
+	<br />	
+
+<table class="table table-striped">
+    
+    <tbody>
+        <tr>
+            <td>
+				<label>Soru Başlığı</label>
+
+			</td>
+			<td>
+				<input type="text" asp-for="QuesitonTitle" />
+			</td>
+            
+        </tr>
+        <tr>
+			<td>
+				<label>Soru Açıklaması</label>
+			</td>
+			<td>
+				<input type="text" asp-for="QuesitonDesciription" />
+			</td>
+        </tr>
+        <tr>
+			<td>
+				<label>Soru Puanı</label>
+			</td>
+			<td>
+			<input type="text" asp-for="point" />
+			</td>
+        </tr>
+
+
+		<tr>
+			<td>
+				<label>Doğru Cevap</label>
+
+			</td>
+			<td>
+				<input type="text" asp-for="correct_Answer" />
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Soru Tipi</label>
+			</td>
+			<td>
+				<select asp-for="questionType" asp-items="Html.GetEnumSelectList<QuestionType>()">
+					<option selected="selected" value="">Soru Tipini Seçiniz</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Anket:</label>
+			</td>
+			<td>
+				<select name="survey" asp-items="@(new SelectList(Model.Surveys,"Value","Text"))">
+					<option selected="selected" value="">Anket Seçiniz</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+			<button type="submit">Kaydet</button>
+
+			</td>
+		</tr>
+    </tbody>
+</table>
+</form>

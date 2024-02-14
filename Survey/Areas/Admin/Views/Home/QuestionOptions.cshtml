@@ -1,0 +1,18 @@
+﻿@model QuestionOptions
+<form method="post">
+<input hidden asp-for="@Model.QuesitonId" />
+<input hidden asp-for="@Model.Id" />
+<label>Seçenek 1</label>
+<input type="text" asp-for="Option1" />
+<br />
+	<label>Seçenek 2</label>
+	<input type="text" asp-for="Option2" />
+	<br />
+	<label>Seçenek 3</label>
+	<input type="text" asp-for="Option3" />
+	<br />
+	<label>Seçenek 4</label>
+	<input type="text" asp-for="Option4" />
+	<br />
+	<button type="submit">Kaydet</button>
+</form>

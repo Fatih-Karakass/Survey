@@ -1,0 +1,63 @@
+﻿@model UserSurveyDto
+<h1>Hoşgeldiniz @Model.User.Name</h1>
+
+
+
+<table class="table" id="dataTable">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Anket Adı</th>
+            <th scope="col">Bşalngıç Tarihi</th>
+            <th scope="col">Bitiş Tarihi</th>
+            <th scope="col">Puan</th>
+            <th scope="col"></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Surveys)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.StartedTime.ToString("MM/dd/yyyy")</td>
+                <td>@item.FinishedTime.ToString("MM/dd/yyyy")</td>
+                    @if (Model.surveyPoints.Any(x => x.surveysId == item.Id))
+                    {
+                <td>
+
+                        <label>@Model.surveyPoints.Where(x => x.surveysId == item.Id).Select(x=>x.Point).FirstOrDefault()</label>
+                   
+
+                </td>
+                    <td><button disabled asp-action="SurveyStart" asp-route-id="@item.Id" asp-route-userid="@Model.User.Id" class="">Teste başla</button></td>
+                    @*<td><a asp-action="UpdateSurveys" asp-route-id="@item.Id" class=""><i class="fa fa-solid fa-pen "></i></a></td>*@
+                }
+                else
+                {
+                    <td>
+
+                        <label>@Model.surveyPoints.Where(x => x.surveysId == item.Id).Select(x=>x.Point).FirstOrDefault()</label>
+
+
+                    </td>
+                    <td><a asp-action="SurveyStart" asp-route-id="@item.Id" asp-route-userid="@Model.User.Id" class="">Teste başla</a></td>
+                    @*<td><a asp-action="UpdateSurveys" asp-route-id="@item.Id" class=""><i class="fa fa-solid fa-pen "></i></a></td>*@
+                    
+                }
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+@section Scripts{
+        <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+            });
+
+        </script>
+           }

@@ -1,0 +1,50 @@
+﻿@model List<UserPointDto>
+<div class="container-fluid">
+	
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th scope="col">Kullanıcı Adı</th>
+						<th scope="col">Anket Adı</th>
+						<th scope="col">Puan</th>
+
+
+					</tr>
+				</thead>
+
+				<tbody>
+
+
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@item.UserName
+							</td>
+							<td>
+								@item.SurveyName
+							</td>
+							<td>
+								@item.Point
+							</td>
+						</tr>
+
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+@section Scripts{
+	<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" ></script>
+	<script>
+		$(document).ready(function () {
+			$('#dataTable').DataTable();
+		});
+
+	</script>
+           }
